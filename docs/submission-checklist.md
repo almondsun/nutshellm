@@ -22,6 +22,6 @@
 - [ ] PariTok account email entered privately in Devpost.
 - [x] Three 3:2 screenshots: landing/workbench, result evidence, context decisions.
 - [x] Thumbnail in 3:2 format.
-- [ ] Public YouTube/Vimeo demo under three minutes.
+- [x] Public YouTube/Vimeo demo under three minutes.
 - [ ] Actionable PariTok feedback submitted without exposing private data.
 - [ ] Optional social post tagged `#BuiltWithParitok`.
