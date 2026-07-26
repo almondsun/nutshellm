@@ -1,79 +1,226 @@
-# nutsheLLM 
+<div align="center">
 
-Let me introduce the project idea I propose for the Build with Paritok hackathon.
+<img src="frontend/public/brand/nuto-mark.svg" width="88" alt="Nuto, the nutsheLLM acorn mascot">
 
-The project is called nutsheLLM.
+# nutsheLLM
 
-The core problem we want to address is simple: modern AI agents often send enormous amounts of context to language models. This context may contain source code, logs, documentation, previous conversations, tool outputs and repeated information.
+**Your context, in a nutsheLLM.**
 
-Most of that information is useful, but not all of it needs to be transmitted in its original form.
+[![Built with Paritok](https://img.shields.io/badge/Built%20with-Paritok-d8ff54?labelColor=111611)](https://github.com/Paritok-official/paritok-4b-v1)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 
-The result is higher API costs, longer response times and unnecessary token consumption.
+</div>
 
-nutsheLLM is an intelligent context-efficiency layer for AI applications and agents.
+nutsheLLM is a quality-aware context optimization workbench for AI applications and
+agents. Nuto, its acorn guide, helps make the safety story memorable: trim the
+shell, guard the kernel, and prove the answer. The application compresses eligible context with
+[Paritok](https://github.com/Paritok-official/paritok-4b-v1), checks whether exact
+facts and task performance survived, and automatically retries with safer context
+when they did not.
 
-It sits between an AI application and the final language model. Before a request reaches the LLM, nutsheLLM analyzes the context, identifies which information is critical, and uses Paritok to compress the parts that can safely be reduced.
+The core question is not only “how many tokens did we remove?” It is “how many
+tokens can we remove while preserving useful task performance?”
 
-However, nutsheLLM is not intended to be just another compression proxy.
+## What it proves
 
-Its main differentiator is that it evaluates whether the compressed context still allows the model to complete the task correctly.
+- **Fair baseline comparison.** The task model, parameters, and instructions are
+  identical; only context changes.
+- **Explicit context decisions.** Every segment is classified as immutable,
+  compressible, or disposable.
+- **Exact fact preservation.** Paths, identifiers, signatures, errors, timestamps,
+  measurements, stack frames, URLs, and quoted literals must survive byte-for-byte.
+- **Real fallback.** nutsheLLM tries PariTok `L2`, then `L1`, then `L0`, and finally
+  restores the original context.
+- **Honest accounting.** PariTok savings, deterministic duplicate removal, task
+  input, evaluation overhead, estimated spend, and latency are reported separately.
 
-The central question of the project is not simply:
+## Final live result
 
-“How many tokens did we remove?”
+The final three-scenario suite achieved **52.2% median input saving with a 100%
+deterministic pass rate (3/3)**. Individual savings were 52.2%, 0%, and 71.58%.
+The zero-savings checkout result is retained because the safety contract takes
+priority over the headline number. See the
+[final benchmark](docs/final-benchmark.md) and
+[structured evidence](examples/benchmark-summary.json).
 
-It is:
+## Architecture
 
-“How many tokens can we remove while preserving useful task performance?”
+```text
+React workbench
+      │  POST /api/v1/runs
+      ▼
+FastAPI + temporary SQLite job queue
+      │
+      ├─ classify segments and lock critical facts
+      ├─ call Paritok hosted /compress
+      ├─ restore any segment that loses an immutable span
+      ├─ call configured OpenAI-compatible task model
+      ├─ validate quality and retry at safer levels
+      └─ persist content-free aggregate metrics
+```
 
-The system classifies context into three categories.
+The production artifact is one Docker image. FastAPI serves the compiled React
+workbench, runs one recoverable background worker, and stores short-lived results in
+SQLite on a mounted volume. See [Architecture](docs/architecture.md) and
+[Evaluation methodology](docs/evaluation.md).
 
-First, immutable information, which should remain almost exactly as written. This includes error codes, numerical measurements, function names, API signatures, file paths and stack traces.
+## Curated demonstrations
 
-Second, compressible information, such as long explanations, repetitive logs, tool outputs and historical conversation context.
+1. **Code debugging:** find a retry-cache key bug while preserving exact files,
+   symbols, and test evidence.
+2. **Incident response:** retain a checkout failure’s service, start time, peak error
+   rate, exact exception, and triggering deployment.
+3. **Tool-output analysis:** remove repeated worker health output without losing the
+   single disk-pressure anomaly.
 
-Third, disposable information, including duplicates, boilerplate and irrelevant details.
+Curated answers use deterministic fact validators. Custom tasks use exact invariant
+checks and can optionally enable a blind semantic judge. If no reliable validator is
+available, the UI says `unverified`; it does not claim success.
 
-After this analysis, nutsheLLM creates two possible execution paths.
+## Local development
 
-The baseline path sends the original context directly to the LLM.
+Requirements: Python 3.11+, Node.js 22+, a PariTok hosted API key, and an
+OpenAI-Chat-Completions-compatible model endpoint.
 
-The optimized path sends a Paritok-compressed version of the same context.
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[dev]"
+cd frontend && npm ci && cd ..
+```
 
-The system then compares the results using metrics such as token reduction, cost, latency, factual preservation and task success.
+Set runtime values in your shell or secret manager. `config.example` lists every
+supported name; it contains placeholders only.
 
-For tasks involving code, we can check whether the suggested patch compiles or passes tests.
+```bash
+export PARITOK_API_KEY="..."
+export TASK_MODEL_API_KEY="your-Gemini-API-key"
+export TASK_MODEL_BASE_URL="https://generativelanguage.googleapis.com/v1beta/openai"
+export TASK_MODEL="gemini-3.5-flash-lite"
+export SESSION_SIGNING_SECRET="$(openssl rand -hex 32)"
+```
 
-For debugging tasks, we can verify whether the model identifies the correct root cause.
+Run the API and frontend in separate terminals:
 
-For incident-response tasks, we can check whether critical facts, timestamps and error messages were preserved.
+```bash
+make api
+make web
+```
 
-If the compressed request fails its validation checks, nutsheLLM can automatically retry using a less aggressive compression level or the complete original context.
+Open `http://127.0.0.1:5173`. API documentation is available at
+`http://127.0.0.1:8000/api/docs` outside production.
 
-This introduces one of the project’s most important concepts:
+## Docker
 
-nutsheLLM should not only know how to compress context. It should know when not to compress it.
+```bash
+docker build -t nutshellm .
+docker run --rm -p 8000:8000 \
+  -v nutshellm-data:/app/data \
+  -e PARITOK_API_KEY \
+  -e TASK_MODEL_API_KEY \
+  -e SESSION_SIGNING_SECRET \
+  nutshellm
+```
 
-# INSPIRATION
+For a production public demo, use the same image:
 
-From an implementation perspective, we can draw inspiration from three open-source projects.
+```bash
+docker build -t nutshellm .
+```
 
-Headroom can guide the context-processing and observability architecture.
+Then configure `ENVIRONMENT=production`, both `TURNSTILE_SITE_KEY` and
+`TURNSTILE_SECRET_KEY`, strict quotas, and explicit model prices. The public site
+key is delivered to the frontend at runtime; it is not baked into the image.
+`/readyz` fails closed if required production settings are missing. See
+[Configuration](docs/configuration.md).
 
-LiteLLM can inspire provider routing, usage tracking and gateway design.
+## Task optimization API
 
-LLMLingua can help us understand compression evaluation.
+Start a curated comparison:
 
-Nevertheless, Paritok must remain the central compression technology used by the hackathon submission.
+```bash
+curl -X POST http://127.0.0.1:8000/api/v1/runs \
+  -H "Content-Type: application/json" \
+  -c cookies.txt \
+  -d '{"scenario_id":"checkout-incident","mode":"compare"}'
+```
 
-# In one sentence:
+Poll the returned private status URL with the same anonymous-session cookie:
 
-nutsheLLM is an adaptive context-efficiency platform that helps AI agents use fewer tokens, reduce costs and maintain task quality by compressing only what is safe to compress.
+```bash
+curl -b cookies.txt http://127.0.0.1:8000/api/v1/runs/RUN_ID
+```
 
-The reason I believe this project could be competitive is that it demonstrates Paritok through a real, measurable workflow rather than simply adding it to a chatbot.
+Custom input accepts a task and up to 12 typed context segments:
 
-The judges would be able to see exactly what information was compressed, what was preserved, how much was saved and whether the AI still completed the task successfully.
+```json
+{
+  "task": "What caused the failure?",
+  "mode": "compare",
+  "segments": [
+    {
+      "id": "logs",
+      "kind": "log_output",
+      "source": "api.log",
+      "content": "..."
+    }
+  ],
+  "turnstile_token": "required for every production run"
+}
+```
 
-Our objective would not be to claim that less context is always better.
+Supported kinds are `file_read`, `log_output`, `tool_result`, `history`,
+`documentation`, and `other`. Provider URLs and model names are deployment
+configuration, never user input.
 
-Our objective would be to prove that AI systems can use context more intelligently.
+## Security and privacy
+
+- Provider and PariTok keys remain backend-only and are never returned or logged.
+- Custom content and outputs exist only in the temporary job record and are deleted
+  after `RESULT_TTL_SECONDS` (one hour by default).
+- Aggregate metrics contain no task, context, or output text.
+- Run results are bound to a signed anonymous session, not exposed as public links.
+- Every production run requires Turnstile, independent per-IP and per-session
+  limits, a global run limit,
+  and a global estimated-spend cap.
+- Model-generated code is rendered as text and is never executed.
+- Request size, segment count, upstream model, retries, timeouts, and provider hosts
+  are bounded server-side.
+
+**Operational action:** the PariTok key previously written in local project notes
+must be rotated before deployment. This repository contains no copy of that key.
+
+## Validation
+
+```bash
+make test
+make lint
+make typecheck
+make build
+make docker
+```
+
+CI runs Python tests and lint, frontend lint/type-check/build, and a Docker build.
+Live provider smoke tests are intentionally secret-gated and must not run for
+untrusted pull requests.
+
+## Limits
+
+- v1 supports one environment-configured OpenAI-compatible task-model endpoint.
+- It is a task optimization API, not a transparent Chat Completions proxy.
+- Arbitrary repositories and generated patches are not executed.
+- SQLite and the internal worker require one application replica.
+- Token counts use provider-reported usage when available and otherwise are marked
+  as estimates.
+- Custom task quality is `unverified` unless the optional semantic judge is enabled.
+
+## Submission
+
+The public deployment, measured benchmark export, screenshots, demo recording, and
+Devpost fields are operational release tasks tracked in
+[the submission checklist](docs/submission-checklist.md). Do not publish a savings
+claim until it comes from a completed live run.
+
+## License
+
+Apache License 2.0. Built with [Paritok](https://github.com/Paritok-official/paritok-4b-v1).

@@ -1,0 +1,466 @@
+{
+  "run_id": "redacted",
+  "scenario_id": "retry-cache-bug",
+  "mode": "compare",
+  "task": "Identify the root cause of the stale retry result and name the file, function, and minimal fix. Do not invent details.",
+  "baseline": {
+    "text": "- **Root Cause:** `RetryCache.key_for` returns only `request_id`, ignoring the `attempt` parameter. This causes different retry attempts for the same request to share the same cache key, resulting in stale cached results from earlier attempts.\n- **File:** `src/retries/cache.py`\n- **Function:** `RetryCache.key_for`\n- **Minimal Fix:** Include the `attempt` parameter in the cache key generation:\n  ```python\n  def key_for(self, request_id: str, attempt: int) -> str:\n      return f\"{request_id}:{attempt}\"\n  ```",
+    "usage": {
+      "input_tokens": 1387,
+      "output_tokens": 138,
+      "latency_ms": 1205,
+      "estimated": false
+    }
+  },
+  "optimized": {
+    "text": "- **Root Cause:** `RetryCache.key_for` returns only `request_id` instead of incorporating the `attempt`, causing different attempts to share the same cache key and return stale results.\n- **File:** `src/retries/cache.py`\n- **Function:** `RetryCache.key_for`\n- **Minimal Fix:** Update `key_for` to include `attempt` in the cache key:\n  ```python\n  def key_for(self, request_id: str, attempt: int) -> str:\n      return f\"{request_id}:{attempt}\"\n  ```",
+    "usage": {
+      "input_tokens": 663,
+      "output_tokens": 131,
+      "latency_ms": 967,
+      "estimated": false
+    }
+  },
+  "final_segments": [
+    {
+      "id": "cache-source",
+      "kind": "file_read",
+      "disposition": "compressible",
+      "reason": "restored because a critical span changed",
+      "original": "src/retries/cache.py\nclass RetryCache:\n    def key_for(self, request_id: str, attempt: int) -> str:\n        return request_id\n\n    def get_or_create(self, request_id: str, attempt: int, factory):\n        key = self.key_for(request_id, attempt)\n        if key not in self._values:\n            self._values[key] = factory()\n        return self._values[key]\n\ndef unrelated_helper_0(value):\n    return value\ndef unrelated_helper_1(value):\n    return value\ndef unrelated_helper_2(value):\n    return value\ndef unrelated_helper_3(value):\n    return value\ndef unrelated_helper_4(value):\n    return value\ndef unrelated_helper_5(value):\n    return value\ndef unrelated_helper_6(value):\n    return value\ndef unrelated_helper_7(value):\n    return value\ndef unrelated_helper_8(value):\n    return value\ndef unrelated_helper_9(value):\n    return value\ndef unrelated_helper_10(value):\n    return value\ndef unrelated_helper_11(value):\n    return value\ndef unrelated_helper_12(value):\n    return value\ndef unrelated_helper_13(value):\n    return value\ndef unrelated_helper_14(value):\n    return value\ndef unrelated_helper_15(value):\n    return value\ndef unrelated_helper_16(value):\n    return value\ndef unrelated_helper_17(value):\n    return value\ndef unrelated_helper_18(value):\n    return value\ndef unrelated_helper_19(value):\n    return value\ndef unrelated_helper_20(value):\n    return value\ndef unrelated_helper_21(value):\n    return value\ndef unrelated_helper_22(value):\n    return value\ndef unrelated_helper_23(value):\n    return value\ndef unrelated_helper_24(value):\n    return value\ndef unrelated_helper_25(value):\n    return value",
+      "optimized": "src/retries/cache.py\nclass RetryCache:\n    def key_for(self, request_id: str, attempt: int) -> str:\n        return request_id\n\n    def get_or_create(self, request_id: str, attempt: int, factory):\n        key = self.key_for(request_id, attempt)\n        if key not in self._values:\n            self._values[key] = factory()\n        return self._values[key]\n\ndef unrelated_helper_0(value):\n    return value\ndef unrelated_helper_1(value):\n    return value\ndef unrelated_helper_2(value):\n    return value\ndef unrelated_helper_3(value):\n    return value\ndef unrelated_helper_4(value):\n    return value\ndef unrelated_helper_5(value):\n    return value\ndef unrelated_helper_6(value):\n    return value\ndef unrelated_helper_7(value):\n    return value\ndef unrelated_helper_8(value):\n    return value\ndef unrelated_helper_9(value):\n    return value\ndef unrelated_helper_10(value):\n    return value\ndef unrelated_helper_11(value):\n    return value\ndef unrelated_helper_12(value):\n    return value\ndef unrelated_helper_13(value):\n    return value\ndef unrelated_helper_14(value):\n    return value\ndef unrelated_helper_15(value):\n    return value\ndef unrelated_helper_16(value):\n    return value\ndef unrelated_helper_17(value):\n    return value\ndef unrelated_helper_18(value):\n    return value\ndef unrelated_helper_19(value):\n    return value\ndef unrelated_helper_20(value):\n    return value\ndef unrelated_helper_21(value):\n    return value\ndef unrelated_helper_22(value):\n    return value\ndef unrelated_helper_23(value):\n    return value\ndef unrelated_helper_24(value):\n    return value\ndef unrelated_helper_25(value):\n    return value",
+      "level": "L1",
+      "original_tokens": 372,
+      "optimized_tokens": 372,
+      "critical_spans": [
+        {
+          "kind": "path",
+          "text": "src/retries/cache.py"
+        },
+        {
+          "kind": "signature",
+          "text": "class RetryCache"
+        },
+        {
+          "kind": "signature",
+          "text": "def key_for(self, request_id: str, attempt: int)"
+        },
+        {
+          "kind": "signature",
+          "text": "def get_or_create(self, request_id: str, attempt: int, factory)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_0(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_1(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_2(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_3(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_4(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_5(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_6(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_7(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_8(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_9(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_10(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_11(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_12(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_13(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_14(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_15(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_16(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_17(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_18(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_19(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_20(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_21(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_22(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_23(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_24(value)"
+        },
+        {
+          "kind": "signature",
+          "text": "def unrelated_helper_25(value)"
+        }
+      ],
+      "immutable_recall": 0.1,
+      "paritok_applied": false,
+      "restored": true
+    },
+    {
+      "id": "failing-test",
+      "kind": "tool_result",
+      "disposition": "compressible",
+      "reason": "large typed context eligible for Paritok",
+      "original": "tests/retries/test_cache.py::test_attempts_are_isolated FAILED\nAssertionError: expected result for attempt 2, received cached result for attempt 1\nrequest_id='req_7f91' attempt=2\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+      "optimized": "tests/retries/test_cache.py::test_attempts_are_isolated FAILED\nAssertionError: expected result for attempt 2, received cached result for attempt 1\nrequest_id='req_7f91' attempt=2",
+      "level": "L2",
+      "original_tokens": 675,
+      "optimized_tokens": 45,
+      "critical_spans": [
+        {
+          "kind": "path",
+          "text": "tests/retries/test_cache.py"
+        },
+        {
+          "kind": "identifier",
+          "text": "test_attempts_are_isolated"
+        },
+        {
+          "kind": "error",
+          "text": "AssertionError: expected result for attempt 2, received cached result for attempt 1"
+        },
+        {
+          "kind": "quoted_literal",
+          "text": "'req_7f91'"
+        }
+      ],
+      "immutable_recall": 1.0,
+      "paritok_applied": true,
+      "restored": false
+    }
+  ],
+  "attempts": [
+    {
+      "level": "L2",
+      "segments": [
+        {
+          "id": "cache-source",
+          "kind": "file_read",
+          "disposition": "compressible",
+          "reason": "restored because a critical span changed",
+          "original": "src/retries/cache.py\nclass RetryCache:\n    def key_for(self, request_id: str, attempt: int) -> str:\n        return request_id\n\n    def get_or_create(self, request_id: str, attempt: int, factory):\n        key = self.key_for(request_id, attempt)\n        if key not in self._values:\n            self._values[key] = factory()\n        return self._values[key]\n\ndef unrelated_helper_0(value):\n    return value\ndef unrelated_helper_1(value):\n    return value\ndef unrelated_helper_2(value):\n    return value\ndef unrelated_helper_3(value):\n    return value\ndef unrelated_helper_4(value):\n    return value\ndef unrelated_helper_5(value):\n    return value\ndef unrelated_helper_6(value):\n    return value\ndef unrelated_helper_7(value):\n    return value\ndef unrelated_helper_8(value):\n    return value\ndef unrelated_helper_9(value):\n    return value\ndef unrelated_helper_10(value):\n    return value\ndef unrelated_helper_11(value):\n    return value\ndef unrelated_helper_12(value):\n    return value\ndef unrelated_helper_13(value):\n    return value\ndef unrelated_helper_14(value):\n    return value\ndef unrelated_helper_15(value):\n    return value\ndef unrelated_helper_16(value):\n    return value\ndef unrelated_helper_17(value):\n    return value\ndef unrelated_helper_18(value):\n    return value\ndef unrelated_helper_19(value):\n    return value\ndef unrelated_helper_20(value):\n    return value\ndef unrelated_helper_21(value):\n    return value\ndef unrelated_helper_22(value):\n    return value\ndef unrelated_helper_23(value):\n    return value\ndef unrelated_helper_24(value):\n    return value\ndef unrelated_helper_25(value):\n    return value",
+          "optimized": "src/retries/cache.py\nclass RetryCache:\n    def key_for(self, request_id: str, attempt: int) -> str:\n        return request_id\n\n    def get_or_create(self, request_id: str, attempt: int, factory):\n        key = self.key_for(request_id, attempt)\n        if key not in self._values:\n            self._values[key] = factory()\n        return self._values[key]\n\ndef unrelated_helper_0(value):\n    return value\ndef unrelated_helper_1(value):\n    return value\ndef unrelated_helper_2(value):\n    return value\ndef unrelated_helper_3(value):\n    return value\ndef unrelated_helper_4(value):\n    return value\ndef unrelated_helper_5(value):\n    return value\ndef unrelated_helper_6(value):\n    return value\ndef unrelated_helper_7(value):\n    return value\ndef unrelated_helper_8(value):\n    return value\ndef unrelated_helper_9(value):\n    return value\ndef unrelated_helper_10(value):\n    return value\ndef unrelated_helper_11(value):\n    return value\ndef unrelated_helper_12(value):\n    return value\ndef unrelated_helper_13(value):\n    return value\ndef unrelated_helper_14(value):\n    return value\ndef unrelated_helper_15(value):\n    return value\ndef unrelated_helper_16(value):\n    return value\ndef unrelated_helper_17(value):\n    return value\ndef unrelated_helper_18(value):\n    return value\ndef unrelated_helper_19(value):\n    return value\ndef unrelated_helper_20(value):\n    return value\ndef unrelated_helper_21(value):\n    return value\ndef unrelated_helper_22(value):\n    return value\ndef unrelated_helper_23(value):\n    return value\ndef unrelated_helper_24(value):\n    return value\ndef unrelated_helper_25(value):\n    return value",
+          "level": "L1",
+          "original_tokens": 372,
+          "optimized_tokens": 372,
+          "critical_spans": [
+            {
+              "kind": "path",
+              "text": "src/retries/cache.py"
+            },
+            {
+              "kind": "signature",
+              "text": "class RetryCache"
+            },
+            {
+              "kind": "signature",
+              "text": "def key_for(self, request_id: str, attempt: int)"
+            },
+            {
+              "kind": "signature",
+              "text": "def get_or_create(self, request_id: str, attempt: int, factory)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_0(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_1(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_2(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_3(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_4(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_5(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_6(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_7(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_8(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_9(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_10(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_11(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_12(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_13(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_14(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_15(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_16(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_17(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_18(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_19(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_20(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_21(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_22(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_23(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_24(value)"
+            },
+            {
+              "kind": "signature",
+              "text": "def unrelated_helper_25(value)"
+            }
+          ],
+          "immutable_recall": 0.1,
+          "paritok_applied": false,
+          "restored": true
+        },
+        {
+          "id": "failing-test",
+          "kind": "tool_result",
+          "disposition": "compressible",
+          "reason": "large typed context eligible for Paritok",
+          "original": "tests/retries/test_cache.py::test_attempts_are_isolated FAILED\nAssertionError: expected result for attempt 2, received cached result for attempt 1\nrequest_id='req_7f91' attempt=2\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+          "optimized": "tests/retries/test_cache.py::test_attempts_are_isolated FAILED\nAssertionError: expected result for attempt 2, received cached result for attempt 1\nrequest_id='req_7f91' attempt=2",
+          "level": "L2",
+          "original_tokens": 675,
+          "optimized_tokens": 45,
+          "critical_spans": [
+            {
+              "kind": "path",
+              "text": "tests/retries/test_cache.py"
+            },
+            {
+              "kind": "identifier",
+              "text": "test_attempts_are_isolated"
+            },
+            {
+              "kind": "error",
+              "text": "AssertionError: expected result for attempt 2, received cached result for attempt 1"
+            },
+            {
+              "kind": "quoted_literal",
+              "text": "'req_7f91'"
+            }
+          ],
+          "immutable_recall": 1.0,
+          "paritok_applied": true,
+          "restored": false
+        }
+      ],
+      "answer": {
+        "text": "- **Root Cause:** `RetryCache.key_for` returns only `request_id` instead of incorporating the `attempt`, causing different attempts to share the same cache key and return stale results.\n- **File:** `src/retries/cache.py`\n- **Function:** `RetryCache.key_for`\n- **Minimal Fix:** Update `key_for` to include `attempt` in the cache key:\n  ```python\n  def key_for(self, request_id: str, attempt: int) -> str:\n      return f\"{request_id}:{attempt}\"\n  ```",
+        "usage": {
+          "input_tokens": 663,
+          "output_tokens": 131,
+          "latency_ms": 967,
+          "estimated": false
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "score": 1.0,
+        "checks": [
+          {
+            "name": "required fact",
+            "expected_any": [
+              "src/retries/cache.py"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "key_for"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "attempt",
+              "cache key"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "request_id"
+            ],
+            "passed": true
+          }
+        ],
+        "reason": "all required facts preserved"
+      },
+      "context_tokens": 441,
+      "compression_latency_ms": 48656
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "score": 1.0,
+    "checks": [
+      {
+        "name": "required fact",
+        "expected_any": [
+          "src/retries/cache.py"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "key_for"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "attempt",
+          "cache key"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "request_id"
+        ],
+        "passed": true
+      }
+    ],
+    "reason": "all required facts preserved"
+  },
+  "fallback": null,
+  "metrics": {
+    "original_input_tokens": 1387,
+    "optimized_input_tokens": 663,
+    "paritok_tokens_saved": 630,
+    "directly_pruned_tokens": 0,
+    "total_tokens_saved": 724,
+    "savings_percent": 52.2,
+    "estimated_input_cost_saved_usd": 0.000217,
+    "evaluation_overhead_tokens": 0,
+    "evaluation_overhead_cost_usd": 0.0,
+    "estimated_total_run_cost_usd": 0.001288,
+    "total_latency_ms": 50829
+  }
+}

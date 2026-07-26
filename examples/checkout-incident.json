@@ -1,0 +1,558 @@
+{
+  "run_id": "redacted",
+  "scenario_id": "checkout-incident",
+  "mode": "compare",
+  "task": "State the affected service, start time, peak error rate, exact error, and most likely trigger. Use only the supplied evidence.",
+  "baseline": {
+    "text": "1. **Affected Service:** `checkout-api`\n2. **Start Time:** `2026-07-23T14:37:00Z`\n3. **Peak Error Rate:** `21.4%` (at 2026-07-23T14:39:00Z)\n4. **Exact Error:** `PoolTimeoutError: connection pool exhausted`\n5. **Most Likely Trigger:** Deployment of `payments-client-3.8.0` where the default `pool_size` was reduced from 80 to 8 (started at `2026-07-23T14:35:12Z`).",
+    "usage": {
+      "input_tokens": 2477,
+      "output_tokens": 158,
+      "latency_ms": 1319,
+      "estimated": false
+    }
+  },
+  "optimized": {
+    "text": "1. **Affected Service:** `checkout-api`\n2. **Start Time:** `2026-07-23T14:37:00Z`\n3. **Peak Error Rate:** `21.4%` (at `2026-07-23T14:39:00Z`)\n4. **Exact Error:** `PoolTimeoutError: connection pool exhausted`\n5. **Most Likely Trigger:** Deployment of `payments-client-3.8.0` where the default `pool_size` was reduced from 80 to 8 (`started=2026-07-23T14:35:12Z`).",
+    "usage": {
+      "input_tokens": 2477,
+      "output_tokens": 157,
+      "latency_ms": 906,
+      "estimated": false
+    }
+  },
+  "final_segments": [
+    {
+      "id": "metrics",
+      "kind": "log_output",
+      "disposition": "compressible",
+      "reason": "restored because a critical span changed",
+      "original": "2026-07-23T14:00:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:01:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:02:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:03:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:04:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:05:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:06:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:07:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:08:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:09:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:10:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:11:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:12:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:13:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:14:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:15:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:16:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:17:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:18:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:19:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:20:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:21:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:22:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:23:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:24:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:25:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:26:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:27:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:28:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:29:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:30:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:31:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:32:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:33:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:34:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:37:00Z ALERT checkout-api latency=1840ms error_rate=18.7% requests=912\n2026-07-23T14:38:00Z ERROR checkout-api PoolTimeoutError: connection pool exhausted\n2026-07-23T14:39:00Z ERROR checkout-api error_rate=21.4% latency=2230ms\n",
+      "optimized": "2026-07-23T14:00:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:01:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:02:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:03:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:04:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:05:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:06:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:07:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:08:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:09:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:10:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:11:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:12:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:13:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:14:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:15:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:16:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:17:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:18:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:19:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:20:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:21:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:22:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:23:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:24:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:25:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:26:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:27:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:28:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:29:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:30:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:31:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:32:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:33:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:34:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:37:00Z ALERT checkout-api latency=1840ms error_rate=18.7% requests=912\n2026-07-23T14:38:00Z ERROR checkout-api PoolTimeoutError: connection pool exhausted\n2026-07-23T14:39:00Z ERROR checkout-api error_rate=21.4% latency=2230ms\n",
+      "level": "L2",
+      "original_tokens": 1135,
+      "optimized_tokens": 1135,
+      "critical_spans": [
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:00:00Z"
+        },
+        {
+          "kind": "measurement",
+          "text": "118ms"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:01:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:02:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:03:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:04:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:05:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:06:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:07:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:08:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:09:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:10:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:11:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:12:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:13:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:14:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:15:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:16:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:17:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:18:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:19:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:20:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:21:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:22:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:23:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:24:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:25:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:26:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:27:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:28:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:29:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:30:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:31:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:32:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:33:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:34:00Z"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:37:00Z"
+        },
+        {
+          "kind": "measurement",
+          "text": "1840ms"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:38:00Z"
+        },
+        {
+          "kind": "error",
+          "text": "PoolTimeoutError: connection pool exhausted"
+        },
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:39:00Z"
+        },
+        {
+          "kind": "measurement",
+          "text": "2230ms"
+        }
+      ],
+      "immutable_recall": 0.14285714285714285,
+      "paritok_applied": false,
+      "restored": true
+    },
+    {
+      "id": "deploy",
+      "kind": "tool_result",
+      "disposition": "compressible",
+      "reason": "large typed context eligible for Paritok",
+      "original": "Deployment event\nservice=checkout-api\nversion=payments-client-3.8.0\nstarted=2026-07-23T14:35:12Z\nchange=default pool_size reduced from 80 to 8\nstatus=completed\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+      "optimized": "Deployment event\nservice=checkout-api\nversion=payments-client-3.8.0\nstarted=2026-07-23T14:35:12Z\nchange=default pool_size reduced from 80 to 8\nstatus=completed\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+      "level": "L2",
+      "original_tokens": 681,
+      "optimized_tokens": 681,
+      "critical_spans": [
+        {
+          "kind": "timestamp",
+          "text": "2026-07-23T14:35:12Z"
+        }
+      ],
+      "immutable_recall": 1.0,
+      "paritok_applied": false,
+      "restored": false
+    }
+  ],
+  "attempts": [
+    {
+      "level": "L2",
+      "segments": [
+        {
+          "id": "metrics",
+          "kind": "log_output",
+          "disposition": "compressible",
+          "reason": "restored because a critical span changed",
+          "original": "2026-07-23T14:00:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:01:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:02:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:03:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:04:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:05:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:06:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:07:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:08:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:09:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:10:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:11:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:12:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:13:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:14:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:15:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:16:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:17:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:18:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:19:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:20:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:21:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:22:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:23:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:24:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:25:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:26:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:27:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:28:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:29:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:30:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:31:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:32:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:33:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:34:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:37:00Z ALERT checkout-api latency=1840ms error_rate=18.7% requests=912\n2026-07-23T14:38:00Z ERROR checkout-api PoolTimeoutError: connection pool exhausted\n2026-07-23T14:39:00Z ERROR checkout-api error_rate=21.4% latency=2230ms\n",
+          "optimized": "2026-07-23T14:00:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:01:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:02:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:03:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:04:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:05:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:06:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:07:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:08:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:09:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:10:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:11:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:12:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:13:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:14:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:15:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:16:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:17:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:18:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:19:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:20:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:21:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:22:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:23:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:24:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:25:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:26:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:27:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:28:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:29:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:30:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:31:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:32:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:33:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:34:00Z INFO api latency=118ms error_rate=0.2% requests=840\n2026-07-23T14:37:00Z ALERT checkout-api latency=1840ms error_rate=18.7% requests=912\n2026-07-23T14:38:00Z ERROR checkout-api PoolTimeoutError: connection pool exhausted\n2026-07-23T14:39:00Z ERROR checkout-api error_rate=21.4% latency=2230ms\n",
+          "level": "L2",
+          "original_tokens": 1135,
+          "optimized_tokens": 1135,
+          "critical_spans": [
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:00:00Z"
+            },
+            {
+              "kind": "measurement",
+              "text": "118ms"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:01:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:02:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:03:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:04:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:05:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:06:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:07:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:08:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:09:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:10:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:11:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:12:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:13:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:14:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:15:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:16:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:17:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:18:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:19:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:20:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:21:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:22:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:23:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:24:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:25:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:26:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:27:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:28:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:29:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:30:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:31:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:32:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:33:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:34:00Z"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:37:00Z"
+            },
+            {
+              "kind": "measurement",
+              "text": "1840ms"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:38:00Z"
+            },
+            {
+              "kind": "error",
+              "text": "PoolTimeoutError: connection pool exhausted"
+            },
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:39:00Z"
+            },
+            {
+              "kind": "measurement",
+              "text": "2230ms"
+            }
+          ],
+          "immutable_recall": 0.14285714285714285,
+          "paritok_applied": false,
+          "restored": true
+        },
+        {
+          "id": "deploy",
+          "kind": "tool_result",
+          "disposition": "compressible",
+          "reason": "large typed context eligible for Paritok",
+          "original": "Deployment event\nservice=checkout-api\nversion=payments-client-3.8.0\nstarted=2026-07-23T14:35:12Z\nchange=default pool_size reduced from 80 to 8\nstatus=completed\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+          "optimized": "Deployment event\nservice=checkout-api\nversion=payments-client-3.8.0\nstarted=2026-07-23T14:35:12Z\nchange=default pool_size reduced from 80 to 8\nstatus=completed\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+          "level": "L2",
+          "original_tokens": 681,
+          "optimized_tokens": 681,
+          "critical_spans": [
+            {
+              "kind": "timestamp",
+              "text": "2026-07-23T14:35:12Z"
+            }
+          ],
+          "immutable_recall": 1.0,
+          "paritok_applied": false,
+          "restored": false
+        }
+      ],
+      "answer": {
+        "text": "1. **Affected Service:** `checkout-api`\n2. **Start Time:** `2026-07-23T14:37:00Z`\n3. **Peak Error Rate:** `21.4%` (at `2026-07-23T14:39:00Z`)\n4. **Exact Error:** `PoolTimeoutError: connection pool exhausted`\n5. **Most Likely Trigger:** Deployment of `payments-client-3.8.0` where the default `pool_size` was reduced from 80 to 8 (`started=2026-07-23T14:35:12Z`).",
+        "usage": {
+          "input_tokens": 2477,
+          "output_tokens": 157,
+          "latency_ms": 906,
+          "estimated": false
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "score": 1.0,
+        "checks": [
+          {
+            "name": "required fact",
+            "expected_any": [
+              "checkout-api"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "2026-07-23T14:37:00Z",
+              "14:37"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "21.4%"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "PoolTimeoutError",
+              "connection pool exhausted"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "payments-client-3.8.0",
+              "80 to 8",
+              "pool_size"
+            ],
+            "passed": true
+          }
+        ],
+        "reason": "all required facts preserved"
+      },
+      "context_tokens": 1838,
+      "compression_latency_ms": 3432
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "score": 1.0,
+    "checks": [
+      {
+        "name": "required fact",
+        "expected_any": [
+          "checkout-api"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "2026-07-23T14:37:00Z",
+          "14:37"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "21.4%"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "PoolTimeoutError",
+          "connection pool exhausted"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "payments-client-3.8.0",
+          "80 to 8",
+          "pool_size"
+        ],
+        "passed": true
+      }
+    ],
+    "reason": "all required facts preserved"
+  },
+  "fallback": null,
+  "metrics": {
+    "original_input_tokens": 2477,
+    "optimized_input_tokens": 2477,
+    "paritok_tokens_saved": 0,
+    "directly_pruned_tokens": 0,
+    "total_tokens_saved": 0,
+    "savings_percent": 0.0,
+    "estimated_input_cost_saved_usd": 0.0,
+    "evaluation_overhead_tokens": 0,
+    "evaluation_overhead_cost_usd": 0.0,
+    "estimated_total_run_cost_usd": 0.002274,
+    "total_latency_ms": 5658
+  }
+}

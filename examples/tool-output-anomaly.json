@@ -1,0 +1,230 @@
+{
+  "run_id": "redacted",
+  "scenario_id": "tool-output-anomaly",
+  "mode": "compare",
+  "task": "Which worker is unhealthy, what exact condition failed, and what action should be taken first?",
+  "baseline": {
+    "text": "Based on the provided context:\n\n* **Worker:** `worker-17`\n* **Failed condition:** `disk_free=1.8% DiskPressureWarning: minimum 5% required`\n* **First action:** `drain worker-17 before cleanup`",
+    "usage": {
+      "input_tokens": 3016,
+      "output_tokens": 57,
+      "latency_ms": 1213,
+      "estimated": false
+    }
+  },
+  "optimized": {
+    "text": "- **Worker:** worker-17\n- **Failed Threshold:** disk_free=1.8% (DiskPressureWarning: minimum 5% required)\n- **First Action:** drain worker-17 before cleanup",
+    "usage": {
+      "input_tokens": 857,
+      "output_tokens": 46,
+      "latency_ms": 1539,
+      "estimated": false
+    }
+  },
+  "final_segments": [
+    {
+      "id": "health-primary",
+      "kind": "tool_result",
+      "disposition": "compressible",
+      "reason": "large typed context eligible for Paritok",
+      "original": "DEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nERROR worker=worker-17 disk_free=1.8% DiskPressureWarning: minimum 5% required\nACTION_HINT drain worker-17 before cleanup\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+      "optimized": "ERROR worker=worker-17 disk_free=1.8% DiskPressureWarning: minimum 5% required\nACTION_HINT drain worker-17 before cleanup",
+      "level": "L2",
+      "original_tokens": 1291,
+      "optimized_tokens": 31,
+      "critical_spans": [
+        {
+          "kind": "error",
+          "text": "DiskPressureWarning: minimum 5% required"
+        }
+      ],
+      "immutable_recall": 1.0,
+      "paritok_applied": true,
+      "restored": false
+    },
+    {
+      "id": "health-duplicate",
+      "kind": "tool_result",
+      "disposition": "compressible",
+      "reason": "large typed context eligible for Paritok",
+      "original": "DEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+      "optimized": "DEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+      "level": "L2",
+      "original_tokens": 629,
+      "optimized_tokens": 629,
+      "critical_spans": [],
+      "immutable_recall": 1.0,
+      "paritok_applied": false,
+      "restored": false
+    },
+    {
+      "id": "health-duplicate-2",
+      "kind": "tool_result",
+      "disposition": "disposable",
+      "reason": "exact duplicate",
+      "original": "DEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+      "optimized": "",
+      "level": null,
+      "original_tokens": 629,
+      "optimized_tokens": 0,
+      "critical_spans": [],
+      "immutable_recall": 1.0,
+      "paritok_applied": false,
+      "restored": false
+    }
+  ],
+  "attempts": [
+    {
+      "level": "L2",
+      "segments": [
+        {
+          "id": "health-primary",
+          "kind": "tool_result",
+          "disposition": "compressible",
+          "reason": "large typed context eligible for Paritok",
+          "original": "DEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nERROR worker=worker-17 disk_free=1.8% DiskPressureWarning: minimum 5% required\nACTION_HINT drain worker-17 before cleanup\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+          "optimized": "ERROR worker=worker-17 disk_free=1.8% DiskPressureWarning: minimum 5% required\nACTION_HINT drain worker-17 before cleanup",
+          "level": "L2",
+          "original_tokens": 1291,
+          "optimized_tokens": 31,
+          "critical_spans": [
+            {
+              "kind": "error",
+              "text": "DiskPressureWarning: minimum 5% required"
+            }
+          ],
+          "immutable_recall": 1.0,
+          "paritok_applied": true,
+          "restored": false
+        },
+        {
+          "id": "health-duplicate",
+          "kind": "tool_result",
+          "disposition": "compressible",
+          "reason": "large typed context eligible for Paritok",
+          "original": "DEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+          "optimized": "DEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+          "level": "L2",
+          "original_tokens": 629,
+          "optimized_tokens": 629,
+          "critical_spans": [],
+          "immutable_recall": 1.0,
+          "paritok_applied": false,
+          "restored": false
+        },
+        {
+          "id": "health-duplicate-2",
+          "kind": "tool_result",
+          "disposition": "disposable",
+          "reason": "exact duplicate",
+          "original": "DEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=2 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=3 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=0 heartbeat ok queue_depth=0 retry_count=0\nDEBUG worker=1 heartbeat ok queue_depth=0 retry_count=0",
+          "optimized": "",
+          "level": null,
+          "original_tokens": 629,
+          "optimized_tokens": 0,
+          "critical_spans": [],
+          "immutable_recall": 1.0,
+          "paritok_applied": false,
+          "restored": false
+        }
+      ],
+      "answer": {
+        "text": "- **Worker:** worker-17\n- **Failed Threshold:** disk_free=1.8% (DiskPressureWarning: minimum 5% required)\n- **First Action:** drain worker-17 before cleanup",
+        "usage": {
+          "input_tokens": 857,
+          "output_tokens": 46,
+          "latency_ms": 1539,
+          "estimated": false
+        }
+      },
+      "validation": {
+        "status": "passed",
+        "score": 1.0,
+        "checks": [
+          {
+            "name": "required fact",
+            "expected_any": [
+              "worker-17"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "1.8%"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "DiskPressureWarning",
+              "minimum 5%"
+            ],
+            "passed": true
+          },
+          {
+            "name": "required fact",
+            "expected_any": [
+              "drain"
+            ],
+            "passed": true
+          }
+        ],
+        "reason": "all required facts preserved"
+      },
+      "context_tokens": 686,
+      "compression_latency_ms": 55801
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "score": 1.0,
+    "checks": [
+      {
+        "name": "required fact",
+        "expected_any": [
+          "worker-17"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "1.8%"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "DiskPressureWarning",
+          "minimum 5%"
+        ],
+        "passed": true
+      },
+      {
+        "name": "required fact",
+        "expected_any": [
+          "drain"
+        ],
+        "passed": true
+      }
+    ],
+    "reason": "all required facts preserved"
+  },
+  "fallback": null,
+  "metrics": {
+    "original_input_tokens": 3016,
+    "optimized_input_tokens": 857,
+    "paritok_tokens_saved": 1260,
+    "directly_pruned_tokens": 629,
+    "total_tokens_saved": 2159,
+    "savings_percent": 71.58,
+    "estimated_input_cost_saved_usd": 0.000648,
+    "evaluation_overhead_tokens": 0,
+    "evaluation_overhead_cost_usd": 0.0,
+    "estimated_total_run_cost_usd": 0.001419,
+    "total_latency_ms": 58554
+  }
+}
