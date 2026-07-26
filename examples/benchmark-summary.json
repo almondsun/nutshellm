@@ -1,0 +1,49 @@
+{
+  "measured_at": "2026-07-25",
+  "method": "final curated suite against configured live providers",
+  "task_model": "gemini-3.5-flash-lite",
+  "compressor": "paritok-4b-v1",
+  "scenario_count": 3,
+  "deterministic_passes": 3,
+  "deterministic_pass_rate_percent": 100.0,
+  "median_input_savings_percent": 52.2,
+  "aggregate_original_input_tokens": 6880,
+  "aggregate_optimized_input_tokens": 3997,
+  "aggregate_saved_input_tokens": 2883,
+  "aggregate_input_savings_percent": 41.9,
+  "scenarios": [
+    {
+      "id": "retry-cache-bug",
+      "validation": "passed",
+      "score": 1.0,
+      "original_input_tokens": 1387,
+      "optimized_input_tokens": 663,
+      "saved_input_tokens": 724,
+      "input_savings_percent": 52.2,
+      "fallback": null,
+      "evidence": "retry-cache-bug.json"
+    },
+    {
+      "id": "checkout-incident",
+      "validation": "passed",
+      "score": 1.0,
+      "original_input_tokens": 2477,
+      "optimized_input_tokens": 2477,
+      "saved_input_tokens": 0,
+      "input_savings_percent": 0.0,
+      "fallback": null,
+      "evidence": "checkout-incident.json"
+    },
+    {
+      "id": "tool-output-anomaly",
+      "validation": "passed",
+      "score": 1.0,
+      "original_input_tokens": 3016,
+      "optimized_input_tokens": 857,
+      "saved_input_tokens": 2159,
+      "input_savings_percent": 71.58,
+      "fallback": null,
+      "evidence": "tool-output-anomaly.json"
+    }
+  ]
+}

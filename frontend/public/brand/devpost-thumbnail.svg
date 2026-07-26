@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+  <rect width="1800" height="1200" fill="#160f0a"/>
+  <path d="M0 0h1800v1200H0z" fill="url(#glow)"/>
+  <defs><radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1400 580) rotate(90) scale(600)"><stop stop-color="#dda15e" stop-opacity=".14"/><stop offset="1" stop-color="#160f0a" stop-opacity="0"/></radialGradient></defs>
+  <circle cx="1395" cy="580" r="425" fill="#21160f" stroke="#4b3324" stroke-width="3"/>
+  <circle cx="1395" cy="580" r="330" fill="none" stroke="#a8b85f" stroke-opacity=".28" stroke-dasharray="14 20" stroke-width="3"/>
+  <g transform="translate(1060 245) scale(10)">
+    <path fill="#b96f3f" stroke="#0d0906" stroke-width="1.1" d="M14 27c0-14 8-23 18-23s18 9 18 23c0 16-9 29-18 34-9-5-18-18-18-34Z"/>
+    <path fill="#382318" stroke="#0d0906" stroke-width="1.1" d="M11 25C9 13 18 5 32 5s23 8 21 20c-12-6-30-6-42 0Z"/>
+    <path fill="#f4e4c8" d="M21 30c2-8 7-12 11-12s9 4 11 12c-1 10-6 17-11 20-5-3-10-10-11-20Z"/>
+    <circle cx="27" cy="31" r="2.4" fill="#160f0a"/><circle cx="37" cy="31" r="2.4" fill="#160f0a"/>
+    <path d="M27 38q5 5 10 0" fill="none" stroke="#160f0a" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <text x="112" y="145" fill="#dda15e" font-family="Arial, sans-serif" font-size="46" font-weight="700">nutshe<tspan fill="#a8b85f">LLM</tspan></text>
+  <text x="112" y="405" fill="#f4e4c8" font-family="Arial, sans-serif" font-size="118" font-weight="700" letter-spacing="-5">Your context,</text>
+  <text x="112" y="535" fill="#f4e4c8" font-family="Arial, sans-serif" font-size="118" font-weight="700" letter-spacing="-5">in a <tspan fill="#dda15e">nutsheLLM.</tspan></text>
+  <text x="112" y="640" fill="#ad967e" font-family="Arial, sans-serif" font-size="37">Quality-aware context optimization for AI agents.</text>
+  <g transform="translate(112 765)">
+    <rect width="355" height="72" rx="12" fill="#dda15e"/>
+    <text x="28" y="47" fill="#160f0a" font-family="monospace" font-size="25" font-weight="700">BUILT WITH PARITOK</text>
+  </g>
+  <text x="112" y="1000" fill="#a8b85f" font-family="monospace" font-size="25">SORT THE CONTEXT  •  GUARD THE KERNEL  •  PROVE THE ANSWER</text>
+</svg>
