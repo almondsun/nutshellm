@@ -7,6 +7,7 @@
 **Your context, in a nutsheLLM.**
 
 [![Built with Paritok](https://img.shields.io/badge/Built%20with-Paritok-d8ff54?labelColor=111611)](https://github.com/Paritok-official/paritok-4b-v1)
+[![Live demo](https://img.shields.io/badge/live_demo-Railway-c58b3b?labelColor=111611)](https://nutshellm-production.up.railway.app)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 
 </div>

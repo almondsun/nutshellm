@@ -9,7 +9,7 @@
 - [x] Record measured median input saving and deterministic quality pass rate.
 - [ ] Capture the PariTok hosted dashboard showing matching API activity.
 - [x] Export one redacted sample run into `examples/`.
-- [ ] Verify the public repository shows the Apache 2.0 license and PariTok credit.
+- [x] Verify the public repository shows the Apache 2.0 license and PariTok credit.
 - [x] Confirm no secrets appear in Git history, images, logs, or browser bundles.
 
 ## Devpost material
@@ -18,7 +18,7 @@
 - [x] Project story: inspiration, what it does, implementation, challenges,
       accomplishments, lessons, and next steps.
 - [ ] Tags: PariTok, FastAPI, React, context-compression, LLM, developer-tools.
-- [ ] Public app and source links.
+- [x] Public app and source links.
 - [ ] PariTok account email entered privately in Devpost.
 - [x] Three 3:2 screenshots: landing/workbench, result evidence, context decisions.
 - [x] Thumbnail in 3:2 format.
